@@ -1,0 +1,236 @@
+//Collaborator: Cristian Reynoso
+#include "App.h"
+
+#include <stdlib.h> 
+#include <deque>
+
+static std::deque<Grid> myGrid; //holds the blue outline
+static std::deque<Rect> myCoordinates; //holds the squares that are mousedown sensitive
+static std::deque<Shape> shapes(9); //allocates 9 shape objects to store wether its an x or o
+int count; // keeps tracks of whether its going to be an x or a circle
+bool AI = false;//if AI == 0 two players, if AI == 1 then the AI takes over
+bool win = false;
+bool print = false;
+
+				// game grid
+Grid myTopGrid(-1.0, 1.0, 2, 0.03);
+Grid myLeftGrid(-1.0, 1.0, 0.03, 2);
+Grid myBottomGrid(-1.0, -0.97, 2, 0.03);
+Grid myRightGrid(0.97, 1, 0.03, 2);
+Grid myTopHorizontalGrid(-1, 0.333, 2, 0.03);
+Grid myBottomHorizontalGrid(-1, -0.333, 2, 0.03);
+Grid myRightVerticalGrid(0.333, 1, 0.03, 2);
+Grid myLeftVerticalGrid(-0.333, 1, 0.03, 2);
+//white squares that hold clickable registered areas
+Rect myTopLeftCell(-0.97, 0.97, 0.637, 0.637);
+Rect myTopMiddleCell(-0.303, 0.97, 0.637, 0.637);
+Rect myTopRightCell(0.363, 0.97, 0.607, 0.637);
+Rect myMiddleLeftCell(-0.97, 0.303, 0.637, 0.637);
+Rect myMiddleMidCell(-0.303, 0.303, 0.637, 0.637);
+Rect myMiddleRightCell(0.363, 0.303, 0.607, 0.637);
+Rect myLowerLeftCell(-0.97, -0.363, 0.637, 0.607);
+Rect myLowerMiddleCell(-0.303, -0.363, 0.637, 0.607);
+Rect myLowerRightCell(0.363, -0.363, 0.607, 0.607);
+
+//temp
+App::App(const char* label, int x, int y, int w, int h) : GlutApp(label, x, y, w, h) {
+	// Initialize state variables
+	mx = 0.0;
+	my = 0.0;
+	count = 0; // keeps tracks of whether its going to be an x or a circle
+			   //push back all rectangles that contain the values to create a shape
+	myCoordinates.push_back(myTopLeftCell);//squares are pushed in order from left to right 0-8 to keep track of location
+	myCoordinates.push_back(myTopMiddleCell);
+	myCoordinates.push_back(myTopRightCell);
+	myCoordinates.push_back(myMiddleLeftCell);
+	myCoordinates.push_back(myMiddleMidCell);
+	myCoordinates.push_back(myMiddleRightCell);
+	myCoordinates.push_back(myLowerLeftCell);
+	myCoordinates.push_back(myLowerMiddleCell);
+	myCoordinates.push_back(myLowerRightCell);
+}
+int AIturn()
+{
+	return rand() % 9; //random number generator 1-9
+
+}
+
+
+void wipeGame() //wipes all necessary data sets to their default forms in order to play the game from the beggining
+{
+	std::cout << "Clearing data..... One moment please..." << std::endl;
+	for (int i = 0; i < shapes.size(); i++) {
+		myCoordinates.at(i).setContainsC(false);
+		myCoordinates.at(i).setTaken(false);
+		myCoordinates.at(i).setwhatShape(0);
+		shapes.at(i).setFilled(false);
+		shapes.at(i).setwhatShape(false);
+		shapes.at(i).setXY(0, 0);
+		count = 0;
+	}
+}
+
+
+int checkWinner()//checks if theres is an alignment that creates a win
+{
+	if (myCoordinates.at(0).getShape() != 0 && myCoordinates.at(0).getShape() == myCoordinates.at(1).getShape() && myCoordinates.at(0).getShape() == myCoordinates.at(2).getShape())
+		return myCoordinates.at(0).getShape();
+	else if (myCoordinates.at(3).getShape() != 0 && myCoordinates.at(3).getShape() == myCoordinates.at(4).getShape() && myCoordinates.at(3).getShape() == myCoordinates.at(5).getShape())
+		return myCoordinates.at(3).getShape();
+	else if (myCoordinates.at(6).getShape() != 0 && myCoordinates.at(6).getShape() == myCoordinates.at(7).getShape() && myCoordinates.at(6).getShape() == myCoordinates.at(8).getShape())
+		return myCoordinates.at(6).getShape();
+	else if (myCoordinates.at(0).getShape() != 0 && myCoordinates.at(0).getShape() == myCoordinates.at(3).getShape() && myCoordinates.at(0).getShape() == myCoordinates.at(6).getShape())
+		return myCoordinates.at(0).getShape();
+	else if (myCoordinates.at(1).getShape() != 0 && myCoordinates.at(1).getShape() == myCoordinates.at(4).getShape() && myCoordinates.at(1).getShape() == myCoordinates.at(7).getShape())
+		return myCoordinates.at(1).getShape();
+	else if (myCoordinates.at(2).getShape() != 0 && myCoordinates.at(2).getShape() == myCoordinates.at(5).getShape() && myCoordinates.at(2).getShape() == myCoordinates.at(8).getShape())
+		return myCoordinates.at(2).getShape();
+	else if (myCoordinates.at(0).getShape() != 0 && myCoordinates.at(0).getShape() == myCoordinates.at(4).getShape() && myCoordinates.at(0).getShape() == myCoordinates.at(8).getShape())
+		return myCoordinates.at(0).getShape();
+	else if (myCoordinates.at(6).getShape() != 0 && myCoordinates.at(6).getShape() == myCoordinates.at(4).getShape() && myCoordinates.at(6).getShape() == myCoordinates.at(2).getShape())
+		return myCoordinates.at(6).getShape();
+	else
+		return 0;
+}
+
+void App::draw() {
+
+	// Clear the screen
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// Set background color to black
+	glClearColor(0.0, 0.0, 0.0, 1.0);
+
+	// Set up the transformations stack
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	// Set Color
+	glColor3d(1.0, 1.0, 1.0);
+
+	for (int i = 0; i < shapes.size(); i++) { //creates the shapes circle or x
+		shapes.at(i).draw();
+	}
+
+	int result = checkWinner();//stores temp value with a possible winner
+							   
+      	if(result == 1 || result == 2 || result == 9)
+       	{
+	  win = true;
+		if(print == false)
+		{
+			if (result == 1) {//if returned 1 winning is 0
+				std::cout << "O HAS WON!" << std::endl;
+			}
+			else if (result == 2) {//if returned 2 winner is x
+				std::cout << "X HAS WON!" << std::endl;
+			}
+			else if (count == 9) {
+				std::cout << "It is a tie!" << std::endl;
+			}
+			print = true;
+				}
+	}
+	//  draws the cells
+	myTopLeftCell.draw();
+	myTopMiddleCell.draw();
+	myTopRightCell.draw();
+	myMiddleLeftCell.draw();
+	myMiddleMidCell.draw();
+	myMiddleRightCell.draw();
+	myLowerLeftCell.draw();
+	myLowerMiddleCell.draw();
+	myLowerRightCell.draw();
+	// Draw the tic tac toe grid 
+	myTopGrid.draw();
+	myLeftGrid.draw();
+	myBottomGrid.draw();
+	myRightGrid.draw();
+	myTopHorizontalGrid.draw();
+	myBottomHorizontalGrid.draw();
+	myLeftVerticalGrid.draw();
+	myRightVerticalGrid.draw();
+
+
+	// We have been drawing everything to the back buffer
+	// Swap the buffers for the drawn result
+	glFlush();
+	glutSwapBuffers();
+}
+
+void App::mouseDown(float x, float y) {
+	// Update app state
+	mx = x;
+	my = y;
+	if(win == false)
+	{
+		for (int i = 0; i < myCoordinates.size(); i++) {//check if a cell contains the click coordinates
+			myCoordinates.at(i).contains(mx, my);
+			//std::cout << "getcontains gettaken: " <<myCoordinates.at(i).getContainsC() << myCoordinates.at(i).getTaken() << std::endl;
+			if (AI == true && count % 2 == 1) {//handles that the AI does not choose a cell that is already taken
+				for (int A = 0; count % 2 == 1; A++) {
+					int randy = AIturn(); //calls a random number from AI
+					if (myCoordinates.at(randy).getTaken() == false && count % 2 == 1) { //checks if the cell is taken								        
+						myCoordinates.at(randy).setContainsC(true);//artificially makes contains true to pass the if statement below
+						i = randy;//changes i to randy to make sure the bottom function gets the right cell
+						break;
+					}
+				}
+			}
+			if (myCoordinates.at(i).getContainsC() == true && myCoordinates.at(i).getTaken() == false) {// makes sure it contains the cords but also makes sure the square isnt already taken
+				for (int j = 0; j < shapes.size(); j++) {
+					if (shapes.at(j).isFilled() == false) {//makes sure the same object isnt overwritten
+						shapes.at(j).setXY(myCoordinates.at(i).getX(), myCoordinates.at(i).getY());
+						if (count % 2 == 0) { //makes the drawing a circle
+							shapes.at(j).setwhatShape(1);
+							myCoordinates.at(i).setwhatShape(1);
+							if (AI == true) {
+								std::cout << "Click to continue." << std::endl;
+							}
+						}
+						else {//makes the draw object an x
+							shapes.at(j).setwhatShape(2);
+							myCoordinates.at(i).setwhatShape(2);
+						}
+						myCoordinates.at(i).setTaken(true);//sets taken to true so the same square wont produce more objects
+														   //std::cout << count << std::endl;
+						count++;
+						break;
+					}
+				}
+				break;
+			}
+		}
+	}
+	// Redraw the scene
+	redraw();
+}
+
+void App::mouseDrag(float x, float y) {
+	// Update app state
+	mx = x;
+	my = y;
+
+	// Redraw the scene
+	redraw();
+}
+
+void App::keyPress(unsigned char key) {
+	if (key == 27) {
+		// Exit the app when Esc key is pressed
+		exit(0);
+	}
+	else if (key == 32) {//decimal value for Spacebar
+		if (AI == false) {
+			AI = true;
+			std::cout << "Against AI mode" << std::endl;
+			wipeGame();
+		}
+		else if (AI == true) {
+			AI = false;
+			std::cout << "Player against player mode" << std::endl;
+			wipeGame();
+		}
+	}
+	redraw();
+}

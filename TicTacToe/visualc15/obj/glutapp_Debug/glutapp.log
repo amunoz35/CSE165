@@ -1,0 +1,59 @@
+﻿  App.cpp
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(159): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(175): warning C4305: 'return': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(177): warning C4305: 'return': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(183): warning C4305: 'return': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(185): warning C4305: 'return': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(207): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(208): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(217): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(218): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(220): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(222): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(223): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(227): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(228): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(229): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(230): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(14): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(15): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(16): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(17): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(18): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(19): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(20): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(21): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(23): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(24): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(25): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(26): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(27): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(28): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(29): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(30): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(31): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(53): warning C4018: '<': signed/unsigned mismatch
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(90): warning C4018: '<': signed/unsigned mismatch
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(138): warning C4018: '<': signed/unsigned mismatch
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.cpp(152): warning C4018: '<': signed/unsigned mismatch
+  app_main.cpp
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(159): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(175): warning C4305: 'return': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(177): warning C4305: 'return': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(183): warning C4305: 'return': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(185): warning C4305: 'return': truncation from 'double' to 'float'
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(207): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(208): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(217): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(218): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(220): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(222): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(223): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(227): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(228): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(229): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(230): warning C4244: 'argument': conversion from 'double' to 'GLfloat', possible loss of data
+  GlutApp.cpp
+c:\users\alexander munoz\desktop\glutapptemplate (2)\glutapp.cpp(42): warning C4305: '-=': truncation from 'double' to 'float'
+  Generating Code...
+c:\users\alexander munoz\desktop\glutapptemplate (2)\app.h(74): error C4716: 'Rect::contains': must return a value
